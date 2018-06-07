@@ -2,10 +2,10 @@
 
 #include <memory>
 
-#include "Matrix.h"
+struct Matrix;
 
 class IGenerator
 {
 public:
-	std::shared_ptr<Matrix> Generate(int size);
+	virtual std::shared_ptr<Matrix> Generate(int size) = 0;
 };
