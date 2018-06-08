@@ -10,5 +10,5 @@ class Generator : public IGenerator
 {
 public:
 	Generator() {};
-	std::shared_ptr<Matrix> Generate(int size) override;
+	std::shared_ptr<Matrix> Generate(int size, int sparseness, std::vector<double> & x) override;
 };
