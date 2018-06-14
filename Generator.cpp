@@ -2,14 +2,12 @@
 
 #include <ctime>
 #include <cstdlib>
-#include <iostream>
 
 #include "Matrix.h"
 #include "source/solver/MatrixUtils.h"
 
 std::shared_ptr<Matrix> Generator::Generate(int size, int sparseness, std::vector<double> & x)
 {
-	std::cout << "pew" << std::endl;
 	std::vector<int>    ig;
 	std::vector<int>    jg;
 	std::vector<double> ggl;
