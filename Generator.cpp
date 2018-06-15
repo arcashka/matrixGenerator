@@ -3,10 +3,10 @@
 #include <ctime>
 #include <cstdlib>
 
-#include "Matrix.h"
-#include "source/solver/MatrixUtils.h"
+#include "source/LinearSystem.h"
+#include "source/utils/MatrixUtils.h"
 
-std::shared_ptr<Matrix> Generator::Generate(int size, int sparseness, std::vector<double> & x)
+std::shared_ptr<LinearSystem> Generator::Generate(int size, int sparseness, std::vector<double>& x)
 {
 	std::vector<int>    ig;
 	std::vector<int>    jg;
@@ -45,19 +45,10 @@ std::shared_ptr<Matrix> Generator::Generate(int size, int sparseness, std::vecto
 	for(int i = 0; i < size; i++)
 		di.push_back((double(std::rand()) / double(RAND_MAX)) * diMult);
 
-	std::vector<double> b;
-	auto matrix = std::make_shared<Matrix>(
-		Matrix {
-			std::move(di),
-			std::move(ggl),
-			std::move(ig),
-			std::move(jg),
-			b
-		}
-	);
+	auto matrix = Matrix{ std::move(di), std::move(ggl), std::move(ig), std::move(jg) };
 
-	b = matrix * x;
-	matrix->b = std::move(b);
+	std::vector<double> b = matrix * x;
+	auto system = std::make_shared<LinearSystem>(LinearSystem{ std::move(matrix), std::move(b) });
 
-	return matrix;
+	return system;
 };

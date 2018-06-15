@@ -1,14 +1,12 @@
 #pragma once
 
-#include <memory>
-
 #include "IGenerator.h"
 
-struct Matrix;
+struct LinearSystem;
 
 class Generator : public IGenerator
 {
 public:
 	Generator() {};
-	std::shared_ptr<Matrix> Generate(int size, int sparseness, std::vector<double> & x) override;
+	std::shared_ptr<LinearSystem> Generate(int size, int sparseness, std::vector<double>& x) override;
 };

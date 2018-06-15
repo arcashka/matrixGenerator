@@ -3,10 +3,10 @@
 #include <memory>
 #include <vector>
 
-struct Matrix;
+struct LinearSystem;
 
 class IGenerator
 {
 public:
-	virtual std::shared_ptr<Matrix> Generate(int size, int sparseness, std::vector<double> & x) = 0;
+	virtual std::shared_ptr<LinearSystem> Generate(int size, int sparseness, std::vector<double> & x) = 0;
 };
