@@ -1,7 +1,6 @@
 #include "Generator.h"
 
 #include <ctime>
-#include <cstdlib>
 
 #include "source/LinearSystem.h"
 #include "source/utils/MatrixUtils.h"
