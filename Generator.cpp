@@ -12,7 +12,7 @@ std::shared_ptr<LinearSystem> Generator::Generate(int size, int sparseness, std:
 	std::vector<double> ggl;
 	std::vector<double> di;
 
-	int lowerTriangleElemNumber = (size / 2.0) * (size - 1);
+	const int lowerTriangleElemNumber = (size / 2.0) * (size - 1);
 
 	ig.reserve(size + 1);
 	jg.reserve(lowerTriangleElemNumber);
