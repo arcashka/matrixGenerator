@@ -5,12 +5,12 @@
 #include "source/LinearSystem.h"
 #include "source/utils/MatrixUtils.h"
 
-std::shared_ptr<LinearSystem> Generator::Generate(int size, int sparseness, std::vector<double>& x)
+std::shared_ptr<LinearSystem> Generator::Generate(int size, int sparseness, std::vector<float>& x)
 {
 	std::vector<int>    ig;
 	std::vector<int>    jg;
-	std::vector<double> ggl;
-	std::vector<double> di;
+	std::vector<float> ggl;
+	std::vector<float> di;
 
 	const int lowerTriangleElemNumber = (size / 2.0) * (size - 1);
 
@@ -23,8 +23,8 @@ std::shared_ptr<LinearSystem> Generator::Generate(int size, int sparseness, std:
 
 	int gglNum = 0;
 	int count  = 0;
-	double gglMult = 1.0;
-	double diMult  = 10000.0;
+	float gglMult = 1.0;
+	float diMult  = 10000.0;
 
 	for(int i = 0; i < size; i++)
 	{
@@ -33,7 +33,7 @@ std::shared_ptr<LinearSystem> Generator::Generate(int size, int sparseness, std:
 		{
 			if(gglNum % sparseness == 0)
 			{
-				ggl.push_back((double(std::rand()) / double(RAND_MAX)) * gglMult);
+				ggl.push_back((float(std::rand()) / float(RAND_MAX)) * gglMult);
 				jg.push_back(j);
 				count++;
 			}
@@ -42,11 +42,11 @@ std::shared_ptr<LinearSystem> Generator::Generate(int size, int sparseness, std:
 	ig.push_back(count);
 
 	for(int i = 0; i < size; i++)
-		di.push_back((double(std::rand()) / double(RAND_MAX)) * diMult);
+		di.push_back((float(std::rand()) / float(RAND_MAX)) * diMult);
 
 	auto matrix = Matrix{ std::move(di), std::move(ggl), std::move(ig), std::move(jg) };
 
-	std::vector<double> b = matrix * x;
+	std::vector<float> b = matrix * x;
 	auto system = std::make_shared<LinearSystem>(LinearSystem{ std::move(matrix), std::move(b) });
 
 	return system;

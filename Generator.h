@@ -8,5 +8,5 @@ class Generator : public IGenerator
 {
 public:
 	Generator() {};
-	std::shared_ptr<LinearSystem> Generate(int size, int sparseness, std::vector<double>& x) override;
+	std::shared_ptr<LinearSystem> Generate(int size, int sparseness, std::vector<float>& x) override;
 };
