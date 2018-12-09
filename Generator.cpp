@@ -23,7 +23,7 @@ std::shared_ptr<LinearSystem> Generator::Generate(int size, int sparseness, std:
 
 	int gglNum = 0;
 	int count  = 0;
-	float gglMult = 1.0;
+	float gglMult = 0.001;
 	float diMult  = 10000.0;
 
 	for(int i = 0; i < size; i++)
